@@ -2,18 +2,29 @@
 
 <img src="https://cdn.rawgit.com/hashicorp/terraform-website/master/content/source/assets/images/logo-hashicorp.svg" width="600px">
 
-Requirements
-------------
+### Requirements
 
 - [Terraform](https://www.terraform.io/downloads.html) 0.12.x
 - [Go](https://golang.org/doc/install) 1.14 (to build the provider plugin)
 
-Using the provider
-----------------------
+## Using the provider
+
 After building the provider, follow the instructions to [install it as a plugin](https://www.terraform.io/docs/plugins/basics.html#installing-a-plugin). After placing the provider your plugins directory, run `terraform init` to initialize it.
 
-Developing the Provider
----------------------------
+#### Examples
+
+To create monitor in Uptrends, create a terraform resource like the following, and run `terraform apply`.
+
+```hcl
+# main.tf
+resource "uptrends_monitor" "foo" {
+    monitor_type = "Http"
+    name         = "foo-http-monitor"
+    url          = "https://example.com"
+}
+```
+
+## Developing the Provider
 
 If you wish to work on the provider, you'll first need [Go](http://www.golang.org) installed on your machine (version 1.14+ is *required*). You'll also need to correctly setup a [GOPATH](http://golang.org/doc/code.html#GOPATH), as well as adding `$GOPATH/bin` to your `$PATH`.
 
